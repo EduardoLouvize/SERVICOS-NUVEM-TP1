@@ -1,5 +1,7 @@
+
+<%@page import="br.edu.infnet.app.contatos.EnderecoController"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="br.edu.infnet.domain.contatos.Endereco"%>
+    pageEncoding="ISO-8859-1" import="br.edu.infnet.domain.contatos.Endereco,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServlet"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,15 +17,23 @@
             <input type="submit" value="Buscar" />        
         </form>
         
-               
         
-        <h3 style="color: red">${erro}</h3>
-        <h3 style="color: blue">${endereco.cep}</h3>
-        <h3 style="color: blue">Retirar no final</h3>
-        <h3 style="color: blue">${endereco.logradouro}</h3>
-        <h3 style="color: blue">${endereco.bairro}</h3>
-        <h3 style="color: blue">${endereco.uf}</h3>
-        <h3 style="color: blue">${endereco.length}</h3>
+        <%
+        Endereco[] ends = (Endereco[])request.getAttribute("enderecos");
+        if (request.getContentLength() > 0){
+        	for (Endereco end : ends){
+        		
+        		out.println("<h4 style='color: blue'> CEP: " + end.getCep() + "</h4>");
+            	out.println("<h4 style='color: blue'>" + end.getLogradouro() + "</h4>");
+            	out.println("<h4 style='color: blue'>" + end.getBairro() + "</h4>");
+            	out.println("<h4 style='color: blue'>" + end.getUf() + "</h4>");    
+            	out.println("------------------------------------------------");
+            }
+        }
+        
+        %>        
+        
+        
         
         
 </body>

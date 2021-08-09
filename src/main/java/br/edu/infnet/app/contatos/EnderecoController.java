@@ -1,15 +1,19 @@
 package br.edu.infnet.app.contatos;
 
-import br.edu.infnet.domain.contatos.Endereco;
-import br.edu.infnet.infra.contatos.EnderecoService;
 import java.io.IOException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang.StringUtils;
+
+import br.edu.infnet.domain.contatos.Endereco;
+import br.edu.infnet.infra.contatos.EnderecoService;
+
 
 @WebServlet(name = "EnderecoController", urlPatterns = {"/EnderecoController"})
 public class EnderecoController extends HttpServlet {
@@ -39,23 +43,19 @@ public class EnderecoController extends HttpServlet {
         } else if(StringUtils.isNotBlank(logradouro) && StringUtils.isNotBlank(localidade) && StringUtils.isNotBlank(uf)) {
         	
         	EnderecoService es = new EnderecoService();
-        	Endereco[] end = es.obterCepPorEndereco(uf, localidade, logradouro);
+        	Endereco[] end = es.obterCepPorEndereco(uf, localidade, logradouro);     	
         	
-//        	for(Endereco endereco : end) {
-//        		
-//        		request.setAttribute("endereco", end);
-//        		
-//        		path = "cepPorEndereco.jsp";
-//        	}
-
-        	request.setAttribute("endereco", end);
+        	request.setAttribute("enderecos", end);
+        	
         	path = "cepPorEndereco.jsp";
+        	
+        	
         	
         	
         } else {
             
             
-            request.setAttribute("erro", "CEP Inválido");
+            request.setAttribute("erro", "Informação Inválida");
             
             path = "index.jsp";
         }

@@ -12,8 +12,7 @@ public class EnderecoService {
     
     public Endereco obterPorCep(String cep) {
         
-        //CEP do Infnet no Rio de Janeiro
-        //https://viacep.com.br/ws/20010020/json/        
+               
         return client
                 .target(REST_URI)
                 .path(cep)
@@ -23,10 +22,7 @@ public class EnderecoService {
     }
     
 public Endereco[] obterCepPorEndereco(String uf, String localidade, String logradouro) {
-        
 	
-
-           
         return client
                 .target(REST_URI)
                 .path(uf)
